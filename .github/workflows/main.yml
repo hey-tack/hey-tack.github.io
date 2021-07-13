@@ -27,12 +27,11 @@ jobs:
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.2.0
-      
-      - name: Install npm packages
-        run: npm install
-      
-      - name: Build angular site in prod mode
-        run: ng build --prod
-      
-      - name: Generate static content
-        run: npx scully
+        with:
+          node-version: "14"
+          
+      - name: Scully Publish
+        uses: cmgriffing/scully-gh-pages-action@v9
+        with:
+          # A personal access token needed to push your site after it has been built.
+          access-token: ${{ secrets.ACCESS_TOKEN }}
