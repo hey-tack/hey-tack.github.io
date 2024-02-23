@@ -75,12 +75,10 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-      - name: Output directory contents for debugging
-        run: echo ${{github.workspace}}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site/out
+          path: ${{github.workspace}}/out
 
   # Deployment job
   deploy:
